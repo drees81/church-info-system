@@ -1,0 +1,4 @@
+
+Deploy:
+
+    serverless deploy -v
