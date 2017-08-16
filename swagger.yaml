@@ -1,0 +1,86 @@
+swagger: '2.0'
+info:
+  title: Church Info System
+  description: Manage and present services and other events
+  version: "0.0.1"
+# the domain of the service
+#host: ???
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /sites:
+    get:
+      summary: Sites for services and events
+      description: xxx
+      tags:
+        - common
+      responses:
+        200:
+          description: An array of Sites
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Site'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /service-days:
+    get:
+      summary: Sundays and other potential days for a service
+      description: xxx
+      parameters:
+        - name: start
+          in: query
+          description: Start date
+          required: true
+          type: string
+        - name: end
+          in: query
+          description: End date
+          required: true
+          type: string
+      tags:
+        - common
+      responses:
+        200:
+          description: An array of Sites (ISO date format in ascending order)
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Day'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Site:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the site
+  Day:
+    type: object
+    properties:
+      date:
+        type: string
+        description: 'date in ISO format: yyyy-mm-dd'
+      name:
+        type: string
+        description: Name of the day
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
