@@ -35,15 +35,41 @@ module.exports.preachers = (event, context, callback) => {
   callback(null, createOKresponse(data));
 };
 
-module.exports.serviceDays = (event, context, callback) => {
-  const data = [
-    { date: '2017-08-06', name: 'Sonntag' },
-    { date: '2017-08-13', name: 'Sonntag' },
-    { date: '2017-08-20', name: 'Sonntag' },
-    { date: '2017-08-27', name: 'Sonntag' },
-  ]
 
-  callback(null, createOKresponse(data));
+function createSundays(start, end) {
+  var sundays = [];
+
+  var loopDate = new Date(start);
+  var endDate = new Date(end);
+  
+  while (loopDate <= endDate) {
+    if(loopDate.getDay()==0){   //if Sunday
+      sundays.push(new Date(loopDate.getTime()));
+    }
+    loopDate.setDate(loopDate.getDate() + 1);
+  }
+  return sundays;
+}
+
+module.exports.serviceDays = (event, context, callback) => {
+
+  // TODO get from parametes
+  var startDate = '2017-12-01'
+  var endDate = '2017-12-31'
+
+  // create sundays
+  var result = createSundays(startDate, endDate).map(function(obj){
+    return {
+      'date': obj.toISOString().substring(0,10),
+      'name': 'Sonntag'
+    }
+  });
+
+  // create special days
+
+  // merge sundays and special days
+
+  callback(null, createOKresponse(result));
 };
 
 
