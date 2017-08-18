@@ -1,15 +1,17 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
   title: Church Info System
   description: Manage and present services and other events
   version: "0.0.1"
 # the domain of the service
-#host: ???
+host: 77os3o0poc.execute-api.eu-central-1.amazonaws.com
 # array of all schemes that your API supports
 schemes:
   - https
 # will be prefixed to all paths
-basePath: /v1
+basePath: /dev
 produces:
   - application/json
 paths:
@@ -18,7 +20,7 @@ paths:
       summary: Sites for services and events
       description: xxx
       tags:
-        - common
+        - BasicData
       responses:
         200:
           description: An array of Sites
@@ -26,6 +28,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Site'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /preachers:
+    get:
+      summary: List of common preachers
+      description: xxx
+      tags:
+        - BasicData
+      responses:
+        200:
+          description: An array of Sites
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Preacher'
         default:
           description: Unexpected error
           schema:
@@ -46,7 +65,7 @@ paths:
           required: true
           type: string
       tags:
-        - common
+        - GeneratedData
       responses:
         200:
           description: An array of Sites (ISO date format in ascending order)
@@ -58,6 +77,23 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+  /services:
+    get:
+      summary: cc
+      description: xx
+      tags: 
+        - BusinessData
+      responses:
+        200:
+          description: An array of services 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Service'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
 definitions:
   Site:
     type: object
@@ -65,6 +101,41 @@ definitions:
       name:
         type: string
         description: Name of the site
+      standardServiceStartTime:
+        type: string
+        description: 'Typical time for the service to start (format: hh:mm)'
+  Preacher:
+    type: object
+    properties:
+      name:
+        type: string
+        description: 'Full name of the preacher'
+      initials:
+        type: string
+        description: 'Initial for short labels'
+  Service:
+    type: object
+    properties:
+      date:
+        type: string
+        description: ISO format
+      startTime:
+        type: string
+        description: ISO format
+      site:
+        type: string
+        description: 'Initial for short labels'
+      preacher:
+        type: string
+        description: xx
+      helper:
+        type: string
+        description: xx
+      musician:
+        type: string
+        description: xx
+      communion:
+        type: boolean
   Day:
     type: object
     properties:

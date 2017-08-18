@@ -48,11 +48,24 @@ functions:
       - http:
           path: hello
           method: get
+          cors: true
   sites:
     handler: handler.sites
     events:
       - http: 
           path: sites
+          method: get
+  preachers:
+    handler: handler.preachers
+    events:
+      - http: 
+          path: preachers
+          method: get
+  serviceDays:
+    handler: handler.serviceDays
+    events:
+      - http: 
+          path: service-days
           method: get
 
 #    The following are a few example events you can configure
