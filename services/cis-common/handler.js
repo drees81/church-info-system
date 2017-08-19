@@ -36,40 +36,83 @@ module.exports.preachers = (event, context, callback) => {
 };
 
 
-function createSundays(start, end) {
-  var sundays = [];
-
-  var loopDate = new Date(start);
-  var endDate = new Date(end);
-  
-  while (loopDate <= endDate) {
-    if(loopDate.getDay()==0){   //if Sunday
-      sundays.push(new Date(loopDate.getTime()));
-    }
-    loopDate.setDate(loopDate.getDate() + 1);
+function getSpecialDayName(day, month) {
+  if (month==1 && day==1) {
+    return 'Neujahr'
   }
-  return sundays;
+  if (month==12) {
+    switch(day) {
+      case 24:
+        return "Heiligabend";
+      case 25:
+        return "1. Weihnachtstag";
+      case 26:
+        return "2. Weihnachtstag";
+      case 27:
+        return "3. Weihnachtstag";
+      case 31:
+        return "Altjahresabend";
+    }
+  }
+  return null;
 }
 
+function createSpecialDays(start, end) {
+  var days = {};
+  for (var loopDate=new Date(start.getTime()); loopDate<=end; loopDate.setDate(loopDate.getDate() + 1)) {
+    var name = getSpecialDayName(loopDate.getDate(), loopDate.getMonth() +1)
+    if (name!=null) {
+      var isoDate = loopDate.toISOString().substring(0,10)
+      days[isoDate] = {
+        name: name,
+        date: isoDate
+      }
+    }
+  }
+  return days;
+}
+
+function createSundays(start, end) {
+  var days = {};
+
+  for (var loopDate=new Date(start.getTime()); loopDate<=end; loopDate.setDate(loopDate.getDate() + 1)) {
+    if(loopDate.getDay()==0){   //if Sunday
+      var isoDate = loopDate.toISOString().substring(0,10)
+      days[isoDate] = {
+        name: 'Sonntag',
+        date: isoDate
+      }
+    }
+  }
+  return days;
+}
+
+// TODO refactor new owen module
+// TODO add moving special days
 module.exports.serviceDays = (event, context, callback) => {
 
   // TODO get from parametes
-  var startDate = '2017-12-01'
-  var endDate = '2017-12-31'
+  var start = new Date('2017-12-01')
+  var end = new Date('2017-12-31')
 
   // create sundays
-  var result = createSundays(startDate, endDate).map(function(obj){
-    return {
-      'date': obj.toISOString().substring(0,10),
-      'name': 'Sonntag'
-    }
-  });
+  var days = createSundays(start, end)
 
   // create special days
+  var specialDays = createSpecialDays(start, end)
 
-  // merge sundays and special days
+  // add special days
+  for (var date in specialDays) {
+      days[date] = specialDays[date]
+  }
 
-  callback(null, createOKresponse(result));
+  // convert index map to array
+  var res = Object.keys(days).map(key => days[key]);
+
+  // sort result by date
+  res.sort( (a,b) => (a.date.localeCompare(b.date)));
+
+  callback(null, createOKresponse(res));
 };
 
 

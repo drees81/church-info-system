@@ -77,14 +77,13 @@ describe('calculated', function() {
         });
 
         it('should return a list of potential service days - special days', function(done) {
-            done(); // test temporarily disabled
-            
             event = {};
             handler.serviceDays(event, context, (xx, response) => {
                 message = JSON.parse(response.body);
+                message.length.should.equal(8);
 
                 message[3].date.should.equal('2017-12-24')
-                message[3].name.should.equal('Heilig Abend')
+                message[3].name.should.equal('Heiligabend')
                 message[4].date.should.equal('2017-12-25')
                 message[4].name.should.equal('1. Weihnachtstag')
                 message[5].date.should.equal('2017-12-26')
