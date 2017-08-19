@@ -1,0 +1,94 @@
+service: services-store
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+custom:
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+    migration:
+      dir: offline/migrations
+  
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: eu-central-1
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
+functions:
+  create:
+    handler: services/create.create
+    events:
+      - http:
+          path: services
+          method: post
+          cors: true
+
+  list:
+    handler: services/list.list
+    events:
+      - http:
+          path: services
+          method: get
+          cors: true
+
+  get:
+    handler: services/get.get
+    events:
+      - http:
+          path: services/{id}
+          method: get
+          cors: true
+
+  update:
+    handler: services/update.update
+    events:
+      - http:
+          path: services/{id}
+          method: put
+          cors: true
+
+  delete:
+    handler: services/delete.delete
+    events:
+      - http:
+          path: services/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    TodosDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
