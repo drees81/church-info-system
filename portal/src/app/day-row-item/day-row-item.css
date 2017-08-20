@@ -1,0 +1,22 @@
+.day-row {
+  margin: 5px 5px;
+}
+.day-tile {
+  display: block;
+  border: 5 solid gray;
+  background: blanchedalmond;
+  padding: 5px 10px;
+  margin: 5px 5px;
+  min-width: 10%;
+  max-width: 10%;
+  display: inline-block;
+  font-weight: 400;
+}
+
+.day-tile .name {
+  font-size: 0.8rem; 
+}
+
+.day-tile .date {
+  font-size: 1.0rem; 
+}

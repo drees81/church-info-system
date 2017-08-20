@@ -1,0 +1,10 @@
+<div class="day-row">
+  <div class="day-tile">
+    <div class="date">{{ day.date }}</div>
+    <div class="name">{{ day.name }}</div>
+  </div>
+
+  <span *ngFor="let item of (sites)">
+   <service-tile [site]=item [day]=day></service-tile>
+  </span>
+</div>

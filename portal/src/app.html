@@ -1,0 +1,33 @@
+<div class="card search">
+
+  <h1 class="search-headline right">Church Info System</h1>
+  <h2 class="right">Service Planner</h2>
+
+  <div  *ngIf="days">
+    <div>Users: {{users.length}}</div>
+
+      <input class="search-input"
+        (keydown)="currentUser=''"
+        [(ngModel)]="query" placeholder="type name or number here">
+
+      <input type="checkbox" 
+        [(ngModel)]="showActiveOnly"
+          (change)="onActiveChange()"/>
+
+      <label>Only active users</label>
+  </div>
+
+</div>
+
+<ul class="userlist cf">
+  <li class="userlist-item cf"
+    (click)="showUser(item); query=''"
+    *ngFor="let item of (users | search: query:showActiveOnly)">
+    <app-user-item class="content" [user]=item></app-user-item>
+  </li>
+</ul>
+
+<app-user-details
+  *ngIf="currentUser"
+  [user]="currentUser">
+</app-user-details>

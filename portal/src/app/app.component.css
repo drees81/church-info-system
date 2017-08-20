@@ -1,0 +1,13 @@
+.headerRow {
+    overflow: visible
+}
+
+.date-header {
+  border: 5 solid gray;
+  margin: 5px 5px;
+  padding: 5px 10px;
+  font-size: 1.0rem; 
+  min-width: 10%;
+  max-width: 10%;
+  display: inline-block;
+}

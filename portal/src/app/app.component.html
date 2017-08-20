@@ -1,0 +1,22 @@
+
+<h1>
+  {{title}}
+</h1>
+
+<h2>
+  {{subtitle}}
+</h2>
+
+<div class="headerRow">
+  <div class="date-header"></div>
+  <span *ngFor="let item of (sites)">
+    <site-header [site]=item></site-header>
+  </span>
+</div>
+
+<ul class="userlist cf">
+  <li class="userlist-item cf"
+    *ngFor="let item of (days)">
+    <day-row-item class="content" [day]=item></day-row-item>
+  </li>
+</ul>

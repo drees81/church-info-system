@@ -1,0 +1,11 @@
+.site-header {
+  background: blanchedalmond;
+  margin: 5px 5px;
+  padding: 5px 10px;
+  font-size: 1.0rem; 
+  min-width: 15%;
+  max-width: 15%;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+}

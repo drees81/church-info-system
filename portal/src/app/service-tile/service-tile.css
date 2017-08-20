@@ -1,0 +1,14 @@
+/* ---------------------- */
+/* user-item.css Styles */
+/* ---------------------- */
+
+.service-tile {
+  background:thistle;
+  margin: 5px 5px;
+  padding: 5px 10px;
+  font-size: 0.9rem; 
+  min-width: 15%;
+  max-width: 15%;
+  display: inline-block;
+  border: 1px solid silver
+}
