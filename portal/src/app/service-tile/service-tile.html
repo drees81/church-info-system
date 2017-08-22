@@ -1,8 +1,20 @@
 <div class='service-tile'>
-  <div class='addIcon' (click)="addService($event, day, site)">
-    <fa class='center' [name]="'plus-square'" [size]=3></fa> 
-  </div>
+  <div class='center'>
+    <button type="button" (click)="addService($event, day, site)" pButton icon="fa-plus-square" label="add service"></button>
+  </div> 
 
-  <!-- <div>Datum: {{ day.date }}</div>
-  <div>Ort: {{ site.name }}</div> -->
+   <!-- <div>Datum: {{ day.date }}</div>
+  <div>Ort: {{ site.name }}</div>  -->
 </div>
+
+<p-dialog width=600 [(visible)]="display">
+      <p-header>
+        Service Data
+    </p-header>
+    Content
+    <p-footer>
+      <button type="button" (click)="cancel()" pButton icon="fa-plus-square" label="Cancel"></button>
+      <button type="button" (click)="save()"   pButton icon="fa-plus-square" label="Save"></button>
+    </p-footer>
+  Text
+</p-dialog>

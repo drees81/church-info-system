@@ -12,7 +12,18 @@ export class ServiceTileComponent {
   @Input() day: Day;
   @Input() site :Site;
 
+  display: boolean = false;
+
   addService(event, day, site):void {
-    console.log("add Service " + day.date + " " + site.name);
+    console.log("add Service " + day.date + " " + site.name)
+    this.display = true
+  }
+
+  save() {
+    this.display = false
+  }
+
+  cancel() {
+    this.display = false
   }
 }
