@@ -1,5 +1,8 @@
 <div class='service-tile'>
-  <fa [name]="'plus-square'" [size]=4></fa> 
-  <div>Datum: {{ day.date }}</div>
-  <div>Ort: {{ site.name }}</div>
+  <div class='addIcon' (click)="addService($event, day, site)">
+    <fa class='center' [name]="'plus-square'" [size]=3></fa> 
+  </div>
+
+  <!-- <div>Datum: {{ day.date }}</div>
+  <div>Ort: {{ site.name }}</div> -->
 </div>

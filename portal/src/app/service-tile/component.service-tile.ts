@@ -11,4 +11,8 @@ import { Site } from '../models/site';
 export class ServiceTileComponent {
   @Input() day: Day;
   @Input() site :Site;
+
+  addService(event, day, site):void {
+    console.log("add Service " + day.date + " " + site.name);
+  }
 }
