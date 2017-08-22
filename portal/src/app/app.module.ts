@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
-import { InputTextModule, ButtonModule, DataTableModule, DialogModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule, DataTableModule, DialogModule, DropdownModule, CheckboxModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 
@@ -17,7 +17,7 @@ import { SearchPipe } from './pipe.search';
 
 @NgModule({
   imports: [
-    BrowserModule, BrowserAnimationsModule, FormsModule, HttpModule, Angular2FontawesomeModule, DialogModule, ButtonModule
+    BrowserModule, BrowserAnimationsModule, FormsModule, HttpModule, Angular2FontawesomeModule, DialogModule, ButtonModule, DropdownModule, CheckboxModule
   ],
   declarations: [
     AppComponent, SearchPipe, DayRowItemComponent, SiteHeaderComponent, ServiceTileComponent

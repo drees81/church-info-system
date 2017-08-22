@@ -7,14 +7,36 @@
   <div>Ort: {{ site.name }}</div>  -->
 </div>
 
-<p-dialog width=600 [(visible)]="display">
+<p-dialog width=600 [(visible)]="display" closable="false" modal="true">
       <p-header>
         Service Data
     </p-header>
-    Content
+  
+  <div class="label">Site</div>
+  <input type="text" pInputText  [(ngModel)]="site.name" [disabled]="true"/>
+
+  <div class="label">Date</div>
+  <input type="text" pInputText  [(ngModel)]="day.date" [disabled]="true"/>
+
+  <div class="label">Start Time</div>
+  <p-dropdown [options]="times" [(ngModel)]="service.startTime" editable="editable" placeholder="Time"></p-dropdown>
+
+  <div class="label">Preacher</div>
+  <p-dropdown [options]="preachers" editable="editable" autoWidth="true"></p-dropdown>
+
+  <div class="label">Musician</div>
+  <p-dropdown [options]="musicians" editable="editable" autoWidth="true"></p-dropdown>
+
+  <div class="label">Helper</div>
+  <p-dropdown [options]="helpers" editable="editable" autoWidth="true"></p-dropdown>
+
+  <div class="label">Communion</div>
+  <p-checkbox binary=true></p-checkbox>
+
     <p-footer>
       <button type="button" (click)="cancel()" pButton icon="fa-plus-square" label="Cancel"></button>
       <button type="button" (click)="save()"   pButton icon="fa-plus-square" label="Save"></button>
+      <button type="button" (click)="save()"   pButton icon="fa-plus-square" label="Delete"></button>
     </p-footer>
-  Text
+  
 </p-dialog>
