@@ -70,6 +70,7 @@ body  {
   font-weight: 100;
   line-height: 160%;
   color: #555459;
+  background: whitesmoke;
   line-height: 1.5rem;
 }
 
@@ -81,24 +82,25 @@ body  {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: inherit;
-  font-weight: 100;
+  text-align: center
 }
 
 h1{
-  font-size: 2.4rem;
+  font-weight: 400;
+  font-size: 2.0rem;
   line-height: 100%;
-  margin-bottom: 10px;
-  padding-top: 10px;
+  margin-bottom: 05px;
+  padding-top: 20px;
   font-family: inherit;
   margin: 0 0 1rem;
 }
 
 h2{
   font-weight: 300;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   line-height: 90%;
-  margin-bottom: 5px;
-  margin-top: 10px;
+  margin-bottom: 25px;
+  margin-top: 05px;
 }
 
 h3{
@@ -165,4 +167,9 @@ a.small {
 
 .right {
   text-align: center;
+}
+
+.container {
+  margin: auto;
+  width: 95%;
 }

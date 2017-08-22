@@ -3,12 +3,23 @@
 /* ---------------------- */
 
 .service-tile {
-  background:thistle;
   margin: 5px 5px;
   padding: 5px 10px;
   font-size: 0.9rem; 
-  min-width: 15%;
-  max-width: 15%;
+  min-width: 20%;
+  max-width: 20%;
   display: inline-block;
-  border: 1px solid silver
+
+  color: whitesmoke;
+  background: whitesmoke;
+
+  border: 1px solid rgb(232,234,237);
+  border-radius: 4px;
+}
+
+.service-tile:hover {
+  box-shadow: 5px 5px 4px lightgray;
+  border: 1px solid silver;
+  background: white;
+  color: silver
 }

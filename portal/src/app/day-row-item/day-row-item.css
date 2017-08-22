@@ -1,16 +1,18 @@
 .day-row {
-  margin: 5px 5px;
+  margin: 0px 5px;
 }
 .day-tile {
   display: block;
-  border: 5 solid gray;
-  background: blanchedalmond;
+  background: lightgoldenrodyellow;
   padding: 5px 10px;
   margin: 5px 5px;
-  min-width: 10%;
-  max-width: 10%;
+  min-width: 15%;
+  max-width: 15%;
   display: inline-block;
   font-weight: 400;
+  border: 1px solid rgb(232,234,237);
+  border-radius: 4px;
+
 }
 
 .day-tile .name {
