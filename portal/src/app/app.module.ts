@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 import { AppComponent } from './app.component';
 
@@ -13,7 +14,7 @@ import { SearchPipe } from './pipe.search';
 
 @NgModule({
   imports: [
-    BrowserModule, FormsModule, HttpModule
+    BrowserModule, FormsModule, HttpModule, Angular2FontawesomeModule
   ],
   declarations: [
     AppComponent, SearchPipe, DayRowItemComponent, SiteHeaderComponent, ServiceTileComponent
