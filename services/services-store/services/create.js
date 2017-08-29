@@ -19,18 +19,18 @@ function createOKresponse(data) {
 }
 
 module.exports.create = (event, context, callback) => {
-  const timestamp = new Date().getTime();
+  const timestamp = new Date().getTime()
   const data = JSON.parse(event.body);
   if (typeof data.date !== 'string') {
     console.error('Validation Failed');
-    callback(new Error('Couldn\'t create the service item.'));
+    callback(new Error('Couldn\'t create new service.'));
     return;
   }
 
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Item: {
-      id: uuid.v1(),
+      id: uuid.v4(),
       createdAt: timestamp,
       updatedAt: timestamp,
 
@@ -54,11 +54,5 @@ module.exports.create = (event, context, callback) => {
     }
 
     callback(null, createOKresponse(params.Item));
-    // create a response
-    //const response = {
-    //  statusCode: 200,
-    //  body: JSON.stringify(params.Item),
-    //};
-    //callback(null, response);
   });
 };
