@@ -12,7 +12,7 @@ function createCORSheaders() {
 
 function createOKresponse(data) {
   return {
-    statusCode: 200,
+    statusCode: 201,
     headers: createCORSheaders(),
     body: JSON.stringify(data)
   }
