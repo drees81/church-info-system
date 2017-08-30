@@ -1,42 +1,23 @@
 var should = require('chai').should()
-var http = require('http')
-
-function createOptions(method) {
-    return {
-        postname: 'localhost',
-        port: 3000,
-        path: '/services',
-        method: method,
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
-}
+var testRequest = require('./testRequest')
+var testData = require('./testData')
 
 describe('api', function() {
 
-        describe('create service', function() {
+    describe('create and delete service', function() {
         it('should create a new service', function(done) {
 
-            const service = {
-                    date: '1900-01-02',
-                    startTime: '01:50',
-                    site: 'Nice Church',
-                    preacher:'Someone who can do it', 
-                    helper: 'Whoever wants',
-                    musician: 'Piano Man',
-                    communion: false
-            }
-
-            var options = createOptions('POST')
-            var req = http.request(options, function(response) {
+            function responseHandler(response) {
                 response.statusCode.should.equal(201);
                 response.setEncoding('utf8');
+
                 response.on('data', function(body) {
                     item = JSON.parse(body);
+
                     item.should.have.property('id')
                     item.should.have.property('createdAt')
                     item.should.have.property('updatedAt')
+                    
                     item.date.should.equal('1900-01-02');
                     item.startTime.should.equal('01:50');
                     item.site.should.equal('Nice Church');
@@ -47,12 +28,8 @@ describe('api', function() {
 
                     done()
                 })
-            })
-            req.on('error', function(e) {
-                console.log('problem with request: ' + e)
-            })
-            req.write(JSON.stringify(service));
-            req.end();
+            }
+            testRequest.testRequest(responseHandler, 'POST', testData.service1);
         })
     })
 })
