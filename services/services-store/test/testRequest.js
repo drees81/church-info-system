@@ -1,10 +1,10 @@
 var http = require('http')
 
-function createOptions(method) {
+function createOptions(method, path) {
     return {
         postname: 'localhost',
         port: 3000,
-        path: '/services',
+        path: path,
         method: method,
         headers: {
             'Content-Type': 'application/json'
@@ -12,8 +12,8 @@ function createOptions(method) {
     }
 }
 
-exports.testRequest = function(responseHandler, method, body) {
-    var options = createOptions(method)
+exports.request = function(path, method, body, responseHandler) {
+    var options = createOptions(method, path)
     var req = http.request(options, responseHandler)
     req.on('error', function(e) {
         console.log('problem with request: ' + e)
