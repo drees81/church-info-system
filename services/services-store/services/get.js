@@ -3,6 +3,7 @@
 const dynamodb = require('./dynamodb');
 
 module.exports.get = (event, context, callback) => {
+
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Key: {
@@ -19,9 +20,15 @@ module.exports.get = (event, context, callback) => {
       return;
     }
 
+    if (result.Item) {
+      var statusCode = 200 
+    } else {
+      var statusCode = 404 
+    }
+    
     // create a response
     const response = {
-      statusCode: 200,
+      statusCode: statusCode,
       body: JSON.stringify(result.Item),
     };
     callback(null, response);

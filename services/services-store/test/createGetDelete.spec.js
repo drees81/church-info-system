@@ -7,10 +7,11 @@ describe('Create - Get - Delete - Get', function() {
 
     var idOfCreatedItem;
 
-    it('should get non existant service by id', function(done) {
+    it('get with invalid id should return 404 - not found', function(done) {
         request('/services/xxxx', 'GET', '', (response) => {
-            response.statusCode.should.equal(200)
+            response.statusCode.should.equal(404)
             response.setEncoding('utf8')
+            done()
         })
     })
         
@@ -51,7 +52,7 @@ describe('Create - Get - Delete - Get', function() {
     it('should not be able to get deleted service', function(done) {
         // get created service by id
         request('/services/' + idOfCreatedItem, 'GET', '', (response) => {
-            response.statusCode.should.equal(400)
+            response.statusCode.should.equal(404)
             done()
         })
     })

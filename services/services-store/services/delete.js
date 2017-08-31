@@ -3,6 +3,7 @@
 const dynamodb = require('./dynamodb');
 
 module.exports.delete = (event, context, callback) => {
+
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Key: {
@@ -11,7 +12,7 @@ module.exports.delete = (event, context, callback) => {
   };
 
   // delete the service from the database
-  dynamodb.delete(params, (error) => {
+  dynamodb.delete(params, (error, result) => {
     // handle potential errors
     if (error) {
       console.error(error);
@@ -19,10 +20,10 @@ module.exports.delete = (event, context, callback) => {
       return;
     }
 
+    console.log("result:" + JSON.stringify(result))
     // create a response
     const response = {
       statusCode: 200,
-      body: JSON.stringify({}),
     };
     callback(null, response);
   });
