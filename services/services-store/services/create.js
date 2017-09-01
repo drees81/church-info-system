@@ -21,7 +21,7 @@ function createOKresponse(data) {
 module.exports.create = (event, context, callback) => {
   const timestamp = new Date().getTime()
   const data = JSON.parse(event.body);
-  if (typeof data.date !== 'string') {
+  if (typeof data.isodate !== 'string') {
     console.error('Validation Failed');
     callback(new Error('Couldn\'t create new service.'));
     return;
@@ -34,7 +34,7 @@ module.exports.create = (event, context, callback) => {
       createdAt: timestamp,
       updatedAt: timestamp,
 
-      date: data.date,
+      isodate: data.isodate,
       startTime: data.startTime,
       site: data.site,
       preacher: data.preacher,
