@@ -28,3 +28,7 @@ fa.center {
   display: block;
   text-align: center;
 }
+
+input {
+  min-width: 150px;
+}
