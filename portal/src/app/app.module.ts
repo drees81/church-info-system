@@ -8,10 +8,11 @@ import { InputTextModule, ButtonModule, DataTableModule, DialogModule, DropdownM
 
 import { AppComponent } from './app.component';
 
-import { DayRowItemComponent } from './day-row-item/component.day-row-item';
-import { SiteHeaderComponent } from './site-header/component.site-header';
-import { ServiceTileComponent } from './service-tile/component.service-tile';
-import { ServiceTileRoutingModule} from './service-tile/service-tile-routing.module';
+import { DayRowItemComponent } from './day-row-item/component.day-row-item'
+import { DaySiteCellItemComponent } from './day-site-cell-item/component.day-site-cell-item'
+import { SiteHeaderComponent } from './site-header/component.site-header'
+import { ServiceTileComponent } from './service-tile/component.service-tile'
+import { ServiceTileRoutingModule} from './service-tile/service-tile-routing.module'
 
 import { SearchPipe } from './pipe.search';
 
@@ -20,7 +21,7 @@ import { SearchPipe } from './pipe.search';
     BrowserModule, BrowserAnimationsModule, FormsModule, HttpModule, Angular2FontawesomeModule, DialogModule, ButtonModule, DropdownModule, CheckboxModule
   ],
   declarations: [
-    AppComponent, SearchPipe, DayRowItemComponent, SiteHeaderComponent, ServiceTileComponent
+    AppComponent, SearchPipe, DayRowItemComponent, SiteHeaderComponent, ServiceTileComponent, DaySiteCellItemComponent
   ],
   bootstrap: [
     AppComponent
