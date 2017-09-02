@@ -12,11 +12,14 @@
         Service Data
     </p-header>
   
+  <div class="label">Id</div>
+  <input type="text" pInputText  [(ngModel)]="service.id" [disabled]="true"/>
+
   <div class="label">Site</div>
-  <input type="text" pInputText  [(ngModel)]="site.name" [disabled]="true"/>
+  <input type="text" pInputText  [(ngModel)]="service.site" [disabled]="true"/>
 
   <div class="label">Date</div>
-  <input type="text" pInputText  [(ngModel)]="day.date" [disabled]="true"/>
+  <input type="text" pInputText  [(ngModel)]="service.isodate" [disabled]="true"/>
 
   <div class="label">Start Time</div>
   <p-dropdown [options]="times" [(ngModel)]="service.startTime" editable="editable" placeholder="Time" [autoWidth]="false"></p-dropdown>
@@ -34,9 +37,9 @@
   <p-checkbox binary=true></p-checkbox>
 
     <p-footer>
-      <button type="button" (click)="cancel()" pButton icon="fa-times" label="Cancel"></button>
+      <!-- <button type="button" (click)="cancel()" pButton icon="fa-times" label="Cancel" ></button> -->
       <button type="button" (click)="save()"   pButton icon="fa-floppy-o" label="Save"></button>
-      <button type="button" (click)="delete()"   pButton icon="fa-trash-o" label="Delete"></button>
+      <!-- <button type="button" (click)="delete()"   pButton icon="fa-trash-o" label="Delete"></button> -->
     </p-footer>
   
 </p-dialog>

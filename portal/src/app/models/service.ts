@@ -1,6 +1,6 @@
 export class Service {
   id: string; 
-  date: string
+  isodate: string
   startTime:string
   site:string
   preacher:string
