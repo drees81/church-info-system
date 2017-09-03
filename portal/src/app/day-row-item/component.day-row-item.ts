@@ -11,21 +11,6 @@ import { Site } from '../models/site';
 
 
 export class DayRowItemComponent {
-  @Input() day: Day;
-
-  sites = []
-
-  constructor(private _siteService: SiteService) {
-    this._siteService.apiUrl = 'https://77os3o0poc.execute-api.eu-central-1.amazonaws.com/dev'     
-    this.getSites();
-  }
-
-  private getSites(): void {
-    this._siteService
-      .GetAll()
-      .subscribe((data: Site[]) => this.sites = data ,
-        error => {console.log(error); this.sites = Day[0] },
-        () => console.log('Get all sites complete: ' + this.sites.length ) );
-  }
-
+  @Input() day: Day
+  @Input() sites: Site[]
 }
