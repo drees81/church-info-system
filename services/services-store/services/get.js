@@ -1,6 +1,7 @@
 'use strict';
 
 const dynamodb = require('./dynamodb');
+const responseCreator = require('./responseCreator')
 
 module.exports.get = (event, context, callback) => {
 
@@ -26,11 +27,6 @@ module.exports.get = (event, context, callback) => {
       var statusCode = 404 
     }
     
-    // create a response
-    const response = {
-      statusCode: statusCode,
-      body: JSON.stringify(result.Item),
-    };
-    callback(null, response);
+    callback(null, responseCreator.create(statusCode, result.Item));
   });
 };

@@ -1,6 +1,7 @@
 'use strict';
 
 const dynamodb = require('./dynamodb');
+const responseCreator = require('./responseCreator')
 
 module.exports.update = (event, context, callback) => {
   const timestamp = new Date().getTime();
@@ -32,12 +33,7 @@ module.exports.update = (event, context, callback) => {
       callback(new Error('Couldn\'t update the service.'));
       return;
     }
-
-    // create a response
-    const response = {
-      statusCode: 200,
-      body: JSON.stringify(result.Attributes),
-    };
-    callback(null, response);
+    
+    callback(null, responseCreator.createOK(result.Attributes));
   });
 };

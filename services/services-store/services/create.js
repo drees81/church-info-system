@@ -1,22 +1,8 @@
 'use strict';
 
-const uuid = require('uuid');
-const dynamodb = require('./dynamodb');
-
-function createCORSheaders() {
-  return {
-    "Access-Control-Allow-Origin" : "*", // Required for CORS support to work
-    "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
-  }
-}
-
-function createOKresponse(data) {
-  return {
-    statusCode: 201,
-    headers: createCORSheaders(),
-    body: JSON.stringify(data)
-  }
-}
+const uuid = require('uuid')
+const dynamodb = require('./dynamodb')
+const responseCreator = require('./responseCreator')
 
 module.exports.create = (event, context, callback) => {
   const timestamp = new Date().getTime()
@@ -53,6 +39,6 @@ module.exports.create = (event, context, callback) => {
       return;
     }
 
-    callback(null, createOKresponse(params.Item));
+    callback(null, responseCreator.create(201, params.Item));
   });
 };

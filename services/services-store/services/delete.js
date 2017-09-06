@@ -1,6 +1,7 @@
 'use strict';
 
 const dynamodb = require('./dynamodb');
+const responseCreator = require('./responseCreator')
 
 module.exports.delete = (event, context, callback) => {
 
@@ -20,11 +21,6 @@ module.exports.delete = (event, context, callback) => {
       return;
     }
 
-    console.log("result:" + JSON.stringify(result))
-    // create a response
-    const response = {
-      statusCode: 200,
-    };
-    callback(null, response);
+    callback(null, responseCreator.createOK(result));
   });
 };

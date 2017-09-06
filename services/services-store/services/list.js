@@ -1,8 +1,10 @@
 'use strict';
 
 const dynamodb = require('./dynamodb');
+const responseCreator = require('./responseCreator')
 
 module.exports.list = (event, context, callback) => {
+	
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
   };
@@ -16,11 +18,6 @@ module.exports.list = (event, context, callback) => {
       return;
     }
 
-    // create a response
-    const response = {
-      statusCode: 200,
-      body: JSON.stringify(result.Items),
-    };
-    callback(null, response);
+    callback(null, responseCreator.createOK(result.Items));
   });
 };
