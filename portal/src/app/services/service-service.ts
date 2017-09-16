@@ -15,9 +15,9 @@ export class ServiceService {
     private headers: Headers;
 
     constructor(private _http: Http) {
-        this.headers = new Headers();
-        this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Accept', 'application/json');
+        this.headers = new Headers()
+        this.headers.append('Content-Type', 'application/json')
+        this.headers.append('Accept', 'application/json')
     }
 
     public GetAll = (): Observable<Service[]> => {
@@ -27,13 +27,13 @@ export class ServiceService {
     }
 
     public CreateNew = (service): Observable<Service> => {
-        return this._http.post(this.apiUrl + '/services', service, )
+        return this._http.post(this.apiUrl + '/services', service)
             .map((response: Response) => <string>response.json())
             .catch(this.handleError);
     }
 
     private handleError(error: Response) {
-        console.error(error);
+        console.error('-'  + error +'-'+ error.json().error)
         return Observable.throw(error.json().error || 'Server error');
     }
 }

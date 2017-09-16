@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Day } from '../models/day';
-import {Configuration } from '../app.constants';
+import { Configuration } from '../app.constants';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
