@@ -1,10 +1,14 @@
 <div class='service-tile'>
-  <div class='center'>
+  
+  <div *ngIf="!service.id" class='center'>
     <button type="button" (click)="addService($event, day, site)" pButton icon="fa-plus-square" label="add service"></button>
   </div> 
 
-   <!-- <div>Datum: {{ day.date }}</div>
-  <div>Ort: {{ site.name }}</div>  -->
+  <div *ngIf="service.id">
+    <div>Datum: {{ day.date }}</div>
+    <div>Ort: {{ site.name }}</div>     
+  </div>
+
 </div>
 
 <p-dialog width=600 item-height="800" [(visible)]="display" closable="false" modal="true">
