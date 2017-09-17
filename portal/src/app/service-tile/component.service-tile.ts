@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit,OnChanges, SimpleChanges } from '@angular/core'
 import { Day } from '../models/day'
 import { Site } from '../models/site'
 import { Service } from '../models/service'
@@ -12,10 +12,11 @@ import { ServiceService } from '../services/service-service';
   styleUrls: ['./service-tile.css'],
 })
 
-export class ServiceTileComponent implements OnInit {
+export class ServiceTileComponent implements OnInit, OnChanges {
   @Input() day: Day;
   @Input() site :Site;
-
+  @Input() service: Service;
+  
   display: boolean = false;
 
   preachers: SelectItem[];
@@ -23,7 +24,6 @@ export class ServiceTileComponent implements OnInit {
   musicians: SelectItem[];
   helpers: SelectItem[];
 
-  service: Service;
 
   ngOnInit() {
     if (this.service === undefined) { 
@@ -31,6 +31,13 @@ export class ServiceTileComponent implements OnInit {
       this.service.site = this.site.name
       this.service.isodate = this.day.date
       this.service.startTime = this.site.standardServiceStartTime
+    }
+    //console.log('ServiceTileComponent ' +JSON.stringify(this.service))
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['service'] && this.service) {
+      console.log("ServiceTileComponent change " + JSON.stringify(this.service))
     }
   }
 
@@ -52,7 +59,7 @@ export class ServiceTileComponent implements OnInit {
   }
 
   save() {
-    //this.display = false
+    this.display = false
     if ( this.service.id === undefined ) {
       this._serviceService.CreateNew(this.service).subscribe(
         (data: Service) => { this.service.id = data.id } ,

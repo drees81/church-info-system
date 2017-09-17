@@ -3,17 +3,16 @@
 /* ---------------------- */
 
 .service-tile {
-  margin: 5px 5px;
-  padding: 5px 5px;
   font-size: 0.9rem; 
-  min-width: 20%;
-  max-width: 20%;
-  display: inline-block;
+  min-width: 100%;
+
+  margin: 0px 0px 5px 0px;
+  padding: 2px;
 
   color: black;
-  background: whitesmoke;
+  background: white;
 
-  border: 1px solid rgb(232,234,237);
+  border: 1px solid sienna;
   border-radius: 4px;
 }
 

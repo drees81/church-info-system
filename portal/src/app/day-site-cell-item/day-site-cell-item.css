@@ -1,0 +1,10 @@
+
+.day-site-cell-item {
+    display: inline-block;
+    min-width: 15%;
+    max-width: 20%;
+    margin: 5px 5px;
+    padding: 5px 5px;
+
+    vertical-align: top;
+}

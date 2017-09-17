@@ -1,2 +1,7 @@
-
-<service-tile [site]=site [day]=day></service-tile>
+<div class="day-site-cell-item">
+  <ul class="userlist cf">
+    <li class="userlist-item cf" *ngFor="let item of (filteredServices)">
+      <service-tile [site]=site [day]=day [service]=item></service-tile> 
+    </li>
+  </ul>
+</div>
